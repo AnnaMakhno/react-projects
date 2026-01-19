@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>React Hello World</title>
+    </head>
+    <body>
+        <div class="react-app"></div>
+        <div class="vanilla-app"></div>
+        <script
+            src="https://unpkg.com/react@18/umd/react.development.js"
+            crossorigin
+        ></script>
+        <script
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+            crossorigin
+        ></script>
+        <script>
+            const helloWorlrHeading = React.createElement(
+                "h1",
+                null,
+                "Hello World from React!"
+            );
+            const container = document.querySelector(".react-app");
+            const root = ReactDOM.createRoot(container);
+            root.render(helloWorlrHeading);
+        </script>
+        <script>
+            const heading = document.createElement("h1");
+            heading.textContent = "Hello World from Vanilla!";
+            document.querySelector(".vanilla-app").appendChild(heading);
+        </script>
+    </body>
+</html>
