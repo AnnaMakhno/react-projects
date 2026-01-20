@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
 
-function Posts() {
-    // https://jsonplaceholder.typicode.com/posts
+const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
+function Posts() {
     const [postsArr, setPostsArr] = useState([]);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/posts")
-            .then((response) => response.json())
-            .then((data) => {
-                setPostsArr(data);
-            })
-            .catch((error) => {
+        const fetchPosts = async () => {
+            try {
+                const res = await fetch(API_URL);
+                const posts = await res.json();
+                setPostsArr(posts);
+            } catch (error) {
                 setError(error.message);
-            })
-            .finally(() => {
+            } finally {
                 setIsLoading(false);
-            });
+            }
+        };
+        fetchPosts();
     }, []);
 
     if (error) {
